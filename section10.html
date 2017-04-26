@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 10: Import Code and Configure Excel File from Scratch</h4>
+
+<ol>
+
+<li>Source code files</li>
+
+<p><li>The source code is in CXTFITxxxxxxxx.BAS, which includes all of the functions and subroutines (Macros)</li></p>
+
+<p>The user-friendly interfaces (dialogs) are provided in the following files:</p>
+
+<ul>
+
+<li>DlgJacobian.frm, DlgJacobian.frx</li>
+
+<li>DlgMonteCarloAnalyze.frm, DlgMonteCarloAnalyze.frx</li>
+
+<li>DlgOptions.frm, DlgOptions.frx</li>
+
+<li>DlgPropagate.frm, DlgPropagate.frx</li>
+
+<li>DlgResponse.frm, DlgResponse.frx</li>
+
+<li>DlgSolve.frm, DlgSolve.frx</li>
+
+<li>DlgAbout.frm, DlgAbout.frx</li>
+
+</ul>
+
+<p><li>Import source code</li></p>
+
+<p>Open a new Excel file if not opened.</p>
+
+<p>Install <b>Solver</b> if not installed.</p>
+
+<p>If Solver is installed, the menu item <b>Solver</b> is added in the menu <b>Tools</b>. If not installed, Select <b>Menu->Tools->Add-Ins...</b> to open the <b>Add-Ins</b> dialog (Fig. 10.1).</p>
+
+<p><img src="tuts/tut-figa1.jpg" /></p>
+
+<p>Fig. 10.1 <b>Add-Ins</b> dialog to install <b>Solver</b></p>
+
+<p><li>Import CXTFIT/Excel source code</li></p>
+
+<p>Select menu <b>Tools->Macro->Visual Basic Editor</b> or press <b>Alt+F11</b> to open <b>Microsoft Visual Basic Editor</b> (Fig. 9.2).</p>
+
+<p><img src="tuts/tut-figa2.jpg" /></p>
+
+<p>Fig. 10.2 <b>Add-Ins</b> dialog to install <b>Solver</b></p>
+
+<p>Select menu <b>File->Import File</b> or press <b>Crtl+M</b> to open the <b>Import File</b> dialog (Fig. 10.3).</p>
+
+<p><img src="tuts/tut-figa3.jpg" /></p>
+
+<p>Fig. 10.3 <b>Import File</b> dialog to import source code</p>
+
+<p>Select one file at a time, and press <b>Open</b> to import the file. Import all of the files listed in #2.</p>
+
+<p><li><b>Configure Solver Reference</b> in <b>Visual Basic Editor</b></li></p>
+
+<p>In <b>Visual Basic Editor</b>, select menu <b>Tools->References...</b> to open <b>References-VBAProject</b> dialog (Fig. 10.4).</p>
+
+<p><img src="tuts/tut-figa4.jpg" /></p>
+
+<p>Fig. 10.4 <b>References-VBAProject</b> to set references to <b>Solver</b></p>
+
+<p>Check <b>Solver</b>, and click <b>OK</b>. Close <b>Visual Basic Editor</b> and now CXTFIT/Excel is appropriately configured. You may save the file as a blank CXTFIT/Excel template file.</p>
+
+<p>In the case of not finding <b>Solver</b> in available references list, our experience is to go back to Excel, run <b>Solver</b> by selecting menu <b>Tools->Solvers</b>, and then close <b>Solver</b>. Then open <b>Visual Basic Editor</b> and select menu <b>Tools->References...</b> to open <b>Reference-VBAProject</b> dialog again. Usually, <b>Solver</b> will show up in the list.</p>
+
+<p><li>Add code to manage menu CXTFIT</li></p>
+
+<p>Select ThisWorkbook (Fig. 10.2), add code like Fig. 10.5 so that the CXTFIT menu will be added when this workbook is activated and removed when the workbook is deactivated.</p>
+
+<p><img src="tuts/tut-figa5.jpg" /></p>
+
+<p>Fig. 10.5 Add code to manage menu CXTFIT</p>
+
+</ol>
+
+<p><a href="section9.html">Previous</a> <a href="section11.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

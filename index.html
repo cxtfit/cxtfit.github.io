@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<meta name="description" content="We implemented the widely-used CXTFIT code in Excel to provide flexibility in analyzing multiple tracers experiment data, and added sensitivity and uncertainty analysis functions to facilitate multi-model analysis. We are adding more analytical solutions (e.g., two-well test, pumping tests) for contaminant fate and transport studies." />
+
+<meta name="keywords" content="CXTFIT, Excel, parameter estimation, sensitivity, uncertainty, tracer, convection dispersion equation, nonlinear least squares, two-well test, contminant fate and transport, leach, breakthrough" />
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+<script language="javascript" type="text/javascript">
+
+var interval = 2.5;
+var random_display = 1;
+interval *= 1000;
+
+var image_index = 0;
+image_list = new Array();
+image_list[image_index++] = new imageItem("rotating/00.JPG");
+image_list[image_index++] = new imageItem("rotating/01.JPG");
+image_list[image_index++] = new imageItem("rotating/02.JPG");
+image_list[image_index++] = new imageItem("rotating/03.JPG");
+image_list[image_index++] = new imageItem("rotating/04.JPG");
+image_list[image_index++] = new imageItem("rotating/05.JPG");
+image_list[image_index++] = new imageItem("rotating/06.JPG");
+image_list[image_index++] = new imageItem("rotating/07.JPG");
+var number_of_image = image_list.length;
+function imageItem(image_location) {
+this.image_item = new Image();
+this.image_item.src = image_location;
+}
+function get_ImageItemLocation(imageObj) {
+return(imageObj.image_item.src)
+}
+function generate(x, y) {
+var range = y - x + 1;
+return Math.floor(Math.random() * range) + x;
+}
+function getNextImage() {
+if (random_display) {
+image_index = generate(0, number_of_image-1);
+}
+else {
+image_index = (image_index+1) % number_of_image;
+}
+var new_image = get_ImageItemLocation(image_list[image_index]);
+return(new_image);
+}
+function rotateImage(place) {
+var new_image = getNextImage();
+document[place].src = new_image;
+var recur_call = "rotateImage('"+place+"')";
+sEtTimeout(recur_call, interval);
+}
+
+</script>
+
+
+</head>
+
+<body onload="rotateImage('rImage')">
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<img name="rImage" src="rotating/01.jpg" class="right" width="400" height="300" />
+<h4>Introduction</h4>
+
+We implemented the widely-used CXTFIT code in Excel to provide flexibility in analyzing multiple tracers experiment data, and added sensitivity and uncertainty analysis functions to facilitate multi-model analysis. We are adding more analytical solutions (e.g., two-well test, pumping tests) for contaminant fate and transport studies.
+
+
+<p><b>Functions</b></p>
+
+<ul>
+
+<li><b>CDE</b> and <b>MIM</b> to solve 1d equilibrium/non-equilibrium convection dispersion equation (<a href="http://dx.doi.org/10.1016/j.cageo.2010.01.013">Tang et al. 2010</a>)</li>
+
+<li><b>LMRM</b> and <b>LMRMT</b> to calculate leaching mass ratio (<a href="http://dx.doi.org/10.1111/j.1745-6584.1997.tb00080.x">Shackelford and Glade 1997</a>)</li>
+
+<li><b>CXRTCylinder</b> to solve 3d diffusion equation for a cylinder (<a href="http://dx.doi.org/10.1021/ac50026a008">Anders et al. 1978</a>). Download the implemented Excel file in <a href="download/Andersetal1978forExcel2003.xls">Excel 2003</a> or <a href="download/Andersetal1978forExcel2007.xls">Excel 2007</a> or application to <a href="http://dx.doi.org/10.1021/es051379y">Spalding and Brooks 2005</a> <a href="download/SpaldingandBrooks2005ForExcel2003.xls">Excel 2003</a> or <a href="download/SpaldingandBrooks2005ForExcel2007.xls">Excel 2007</a> for leaching data analysis.</li>
+
+<li><b>CXYTPatch</b> to solve 2d convection dispersion equation for a patch source (Cleary and Ungs 1979; Javandel et al. 1984). <a href="download/Patchsource2d.xls">Download</a> .</li>
+
+<li><b>CEWT</b> and <b>CXYT</b> to calculate concentration in the extraction well and a monitoring well due to injection in an injection well (<a href="http://dx.doi.org/10.1016/0022-1694(94)90187-2">Welty and Gelhar 1994</a>, <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1745-6584.2011.00841.x/abstract">Tang et al. 2011 </a>) <a href="download/twowelltest.zip">Download</a></li>
+
+<li><b>CNAPL</b> to calculate DNAPL concentrations with depleting source, biodecay, and violatilization (<a href="http://dx.doi.org/10.1016/j.jconhyd.2008.03.009">Parker et al. 2008</a>)</li>
+
+<li><b>IslandMounding</b> to calculate transient mounding in circular island water table aquifer (<a href="http://dx.doi.org/10.1016/0022-1694(82)90017-8">Basak 1982</a>). Download the implemented Excel file for <a href="download/Basak1982forExcel2003.xls">Excel 2003</a> or <a href="download/Basak1982forExcel2007.xls">Excel 2007</a>.</li>
+
+<li>Finite difference solution for saturated flow (MODFLOW). <a href="download/AndersonandBair2001.xls">Download Examples in Anderson and Bair 2001</a> .</li>
+
+</ul>
+
+<p><b>Macros</b></p>
+
+<ul>
+
+<li><b>Optimize</b>: minimizes objection function by adjusting values in the parameter range using Solver</li>
+
+<li><b>Analyze</b>: calculates and outputs Jacobian (if selected), standard deviation, and correlation matrix</li>
+
+<li><b>Solve</b>: combines Optimize and Analyze</li>
+
+<li><b>GetJacobianMatrix</b>: calculates and outputs Jacobian matrix</li>
+
+<li><b>Propagate</b>: calculates parameter error propagation predictions using the first order method</li>
+
+<li><b>CalculateResponse</b>: calculates response surface for two selected parameters</li>
+
+<li><b>MonteCarloAnalyze</b>: calculates the objective (or merit) function values for a large number of selected parameter values</li>
+
+</ul>
+
+<p><b>Advantages</b></p>
+
+<ul>
+
+<li>Multiple tracer data can be simultaneously analyzed for multiple locations and times</li>
+
+<li>Any parameter with any transformations can be analyzed with uncertainty and sensitivity quantification</li>
+
+<li>Observation errors can be incorporated into the weighted non-linear least squares method</li>
+
+<li>Prior information can be included as a penalty function in the objective function</li>
+
+<li>Users are able to change selected parameter values and view the results via embedded graphics</li>
+
+</ul>
+
+<p><b>Benchmarks</b></p>
+
+<p>The code was verified by comparing with a number of forward and inverse solutions in CXTFIT 2.0</p>
+
+<p><b>Applications</b></p>
+
+<p>The code was applied to reanalyze data from the literature as well as new data</p>
+
+<p><b>Disclaimer</b></p>
+
+<p>Although we are comfortable with sharing these spreadsheets and codes, we cannot guarantee that they are free of error. If you find what appears to be an error, please contact us at your earliest convenience. You are welcome to regularly check the web site for updates and/or corrections.</p>
+
+<p class="last">last modified: 5/26/2017</p>
+
+</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Table 1. Predefined Excel range and constant names to specify input for and output from CXTFIT/Excel Macros</h4>
+
+<table cellpadding="5" cellspacing="5" border="1px" width="600px">
+
+<tr>
+
+<th>Name</th>
+
+<th>Description</th>
+
+</tr>
+
+<tr>
+
+<td>ObjFuncCell</td>
+
+<td>Cell for objective function</td>
+
+</tr>
+
+<tr>
+
+<td>ParameterRange</td>
+
+<td>Range for parameters to be estimated</td>
+
+</tr>
+
+<tr>
+
+<td>PredictionRange</td>
+
+<td>Range of predictions corresponding to observations, and/or the Jacobian, error propagation to be calculated</td>
+
+</tr>
+
+<tr>
+
+<td>OffsetParaStd</td>
+
+<td>Offset from ParameterRange for input of standard deviations for estimated parameters</td>
+
+</tr>
+
+<tr>
+
+<td>OffsetParaPtb</td>
+
+<td>Offset from the ParameterRange for input of user specified peturbations for derivative calculation, not used if not defined or zero</td>
+
+</tr>
+
+<tr>
+
+<td>NoParaConstraint</td>
+
+<td>No constraint to be imposed on the estimated parameters if defined. Otherwise, the values in the two columns next to ParameterRange are used as lower and upper constraints for parameter estimation.</td>
+
+</tr>
+
+<tr>
+
+<td>OffsetPredStd</td>
+
+<td>Offset from PredictionRange for input of the standard deviation of the observations</td>
+
+</tr>
+
+<tr>
+
+<td>OffsetPredJcb</td>
+
+<td>Offset from PredictionRange for output of Jacobian matrix</td>
+
+</tr>
+
+<tr>
+
+<td>OffsetPredEP</td>
+
+<td>Offset from PredictionRange for output of parameter uncertainty propagation</td>
+
+</tr>
+
+<tr>
+
+<td>PenaltyCell</td>
+
+<td>Cell for relative penalty, default value 1 if not defined</td>
+
+</tr>
+
+<tr>
+
+<td>MCMeritCell</td>
+
+<td>Cell for merit function or error measure for Monte Carlo analysis</td>
+
+</tr>
+
+<tr>
+
+<td>MCParaInputRange</td>
+
+<td>Range of user input random values for parameters</td>
+
+</tr>
+
+<tr>
+
+<td>MCCurrentCell</td>
+
+<td>Cell to show index of current set of parameters for which model prediction is running</td>
+
+</tr>
+
+<tr>
+
+<td>SolveUserFinish</td>
+
+<td>If defined, the results dialog for solver will not pop up</td>
+
+</tr>
+
+<tr>
+
+<td>RSMeritCell</td>
+
+<td>Cell for the merit function for response surface calculation</td>
+
+</tr>
+
+<tr>
+
+<td>RSVRange</td>
+
+<td>A continuous range in a column for response surface calculation</td>
+
+</tr>
+
+<tr>
+
+<td>RSHRange</td>
+
+<td>A continuous range in a row for response surface calculation</td>
+
+</tr>
+
+</table>
+
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

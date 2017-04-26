@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 4: Sensitivity Analysis</h4>
+
+Suppose that we are interested in the sensitivity for dispersion coefficient, velocity, and pulse volume. We will copy sheet1 we obtained in <a href="section2.html">Section 2</a> and conduct sensitivity analysis.
+
+<ol>
+
+<li>Make a copy of Sheet1 similar to Step 1 in <a href="section3.html">Section 3</a></li>
+
+<li>Change a parameter range</li>
+
+<p>Since we are interested in dispersion coefficient, pulse duration, and velocity we will input the dispersion coefficient in B5 so that the three parameters are in a continuous range in the new sheet (Sheet1 (3)).</p>
+
+<p>Type in the formula =B5/B3 (lambda=D/v) in B6 for dispersivity calculation. The dispersivity is further used in column C for prediction calculation in the same way as in <a href="section2.html">Section 2</a> (Fig. 4.1).</p>
+
+<p><img src="tuts/tut-fig41.jpg" /></p>
+
+<p>Fig. 4.1 Change the parameter range to analyze sensitivity for velocity, dispersion coefficient, and pulse duration.</p>
+
+<li>Open Jacobian dialog to calculate and output the Jacobian matrix</li>
+
+<p>Select menu <b>CXTFIT->Calculate sensitivity...</b> to open <b>Jacobian</b> dialog (Fig. 4.2).</p>
+
+<p>Select the new parameter range, change the offset to 1, and click <b>Calculate</b> (Fig. 4.2).</p>
+
+<p>The Jacobian matrix is output next to the prediction range because the offset is set to 1 (Fig. 4.3).</p>
+
+<p><img src="tuts/tut-fig42.jpg" /></p>
+
+<p>Fig. 4.2 <b>Jacobian</b> dialog</p>
+
+<li>More sensitivity analysis</li>
+
+<p>Type in the formula =D11*B$3, =E11*B$4, =F11*B$5 in cell G11, H11, and I11, and double click on the right bottom corner of these cells to extend the formula to calculate the scaled sensitivity in column D, E, and F for velocity, pulse, and dispersion coefficient (Fig. 4.3).</p>
+
+<p>Type in the formula =SQRT(SUMSQ(G11:G46)/COUNT(G11:G46)) in G6 to calculate composite scaled sensitivity for v. Copy cell G6 and paste in cell H6 and I6 for pulse and dispersion coefficient. The sensitivity is shown in the plot in Fig. 4.3. The pulse appears to be relatively very sensitive while v and D are relative insensitive. This may suggest that a small error in pulse may have significant impact on the model prediction, as well as the estimate of v and D.</p>
+
+<p><img src="tuts/tut-fig43.jpg" /></p>
+
+<p>Fig. 4.3 Sensitivity analysis results</p>
+
+</ol>
+
+<p><a href="section3.html">Previous</a> <a href="section5.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

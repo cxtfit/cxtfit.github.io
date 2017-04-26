@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 5: Error Propagation</h4>
+
+Suppose that we are interested in assessing the uncertainty for the prediction of B breakthrough at a distance of 50 cm. The velocity is 50 cm/h. The retardation factor with a standard deviation of 0.2 in addition to the estimates from <a href="section3.html">Section 3</a> is used for model prediction (Fig. 5.1).
+
+<ol>
+
+<li>Make a copy of Sheet1 and set up the problem like Fig. 5.1</li>
+
+<li>Open <b>Propogate</b> dialog</li>
+
+<p>Select menu <b>CXTFIT->Propagate</b> to open the <b>Propagate</b> dialog (Fig. 5.2).</p>
+
+<p><img src="tuts/tut-fig51.jpg" /></p>
+
+<p>Fig. 5.1 Change the parameter range to analyze sensitivity for velocity, dispersion coefficient, and pulse duration.</p>
+
+<p>Select the parameter range and prediction range, change the offset for error propagation to 1, and click Calculate (Fig. 5.2). The error propagation from the parameters to the predictions is output next to the prediction range (Fig. 5.3).</p>
+
+<p><img src="tuts/tut-fig52.jpg" /></p>
+
+<p>Fig. 5.2 Change the parameter range to analyze sensitivity for velocity, dispersion coefficient and pulse duration.</p>
+
+<li>Calculate prediction uncertainty</li>
+
+<p>Assume that the average error of the calibrated model is 3% (RMSE = 0.03 in cell F1), a rough approximation of the standard deviations for the predictions is calculated in column D by typing in the formula =SQRT(C11+$F$1^2) in cell D11, double click on the right left corner of cell D11 to extend the formula.</p>
+
+<li>Calculate the approximate prediction confidence interval</li>
+
+<p>Assume that the value of t is 2.0 (2.0 in cell F2), type in the formula =B11-$F$2*D11 in cell E11, double click on the right left corner of the cell; type in the formula =B11+$F$2*D11 in cell F1, double click on the right left corner of the cell. The confidence band is plotted against the prediction in Fig. 5.3.</p>
+
+<p><img src="tuts/tut-fig53.jpg" /></p>
+
+<p>Fig. 5.3 Prediction uncertainty assessment results</p>
+
+</ol>
+
+<p><a href="section4.html">Previous</a> <a href="section6.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

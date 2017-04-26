@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 7: Response Surface Calculation</h4>
+
+Suppose that we use the non-equilibrium convection dispersion model to simulate the data in <a href="section2.html">Section 2</a>, and we want to examine the response surface with respect to the mobile water fraction (&#946;) and mass transfer coefficient (&#969;).
+
+<ol>
+
+<li>Set up the merit function and values &#946; and &#969;</li>
+
+<p>At first, we set up the problem with merit function following Step 1 and Step 2 in <a href="section6.html">Section 6</a> (Fig. 7.1). Then we input values from 0.60 to 0.99 in column E for &#946;, -1 to 1 for log10(&#969;), and formula =10^F1 in cell F2, and extend the formula from G2 to T2.</p>
+
+<p><img src="tuts/tut-fig71.jpg" /></p>
+
+<p>Fig. 7.1 Input values for &#946; and &#969; for response surface calculation</p>
+
+<li>Calculate response surface</li>
+
+<p>Open <b>Calculate Response Surface</b> dialog by selecting menu <b>CXTFIT->Calculate response surface...</b> to open the dialog (Fig. 7.2);</p>
+
+<p>Select the merit function cell, parameter range, vertical input range, and horizontal input range (Fig. 7.2)</p>
+
+<p>Press <b>Calculate</b> button to conduct the calculation.</p>
+
+<p><img src="tuts/tut-fig72.jpg" /></p>
+
+<p>Fig. 7.2 Response surface calculation dialog</p>
+
+<li>Plot contour</li>
+
+<p>Consult Excel help files for help.</p>
+
+<li>Calculate response surface with different &#955; values</li>
+
+<p>Make a copy of the resulting sheet from the previous steps (see Step 1 and Fig. 3.1 in <a href="section3.html">Section 3</a>).</p>
+
+<p>Change &#955; value in cell C3.</p>
+
+<p>Open <b>Calculate Response Surface</b> dialog by selecting menu <b>CXTFIT->Calculate response surface...</b> to open the dialog (Fig. 8.2), and click button <b>Calculate</b>.</p>
+
+<p>This step can be repeated for a number of &lambda values to calculate RMSE for three parameters. A 3D contour can be plotted in graphic software with this data.</p>
+
+<p>Note as more rows or columns are added, the calculation can be performed incremently by selecting only the added rows and/or columns to save computational time.</p>
+
+<p><img src="tuts/tut-fig73.jpg" /></p>
+
+<p>Fig. 7.3 Contour for response surface</p>
+
+</ol>
+
+<p><a href="section6.html">Previous</a> <a href="section8.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

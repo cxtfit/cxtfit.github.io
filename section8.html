@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 8: Weighted Least Squares with Penalty Function</h4>
+
+Suppose that the chemical analytical error is 0.03 for <sup>3</sup>H<sub>2</sub>O and 0.05 for B, the measurement error for pulse is 1% for both tracers, and the uncertainty in retardation factor is 5% of the mean for B. Assume that we do not have a direct measurement for dispersivity, mobile water fraction, and mass transfer coefficient; we use a large uncertainty for these parameters. Then we can redo the parameter estimation in <a href="section3.html">Section 3</a> with the weighted least squares method with penalty function to incorporate the measurement error for concentration observations as well as experiment conditions (pulse, retardation factor).
+
+<ol>
+
+<li>Make a copy of sheet Sheet1 (2) and re-organize the new sheet as shown in Fig. 8.1</li>
+
+<p><img src="tuts/tut-fig81.jpg" /></p>
+
+<p>Fig. 8.1 Setup to incorporate measurement error for parameter estimation</p>
+
+<p>Since pulse and retardation factor are usually sensitive parameters, their uncertainty is not ignored when they are included for parameter estimation. The mean, standard deviations, and estimates for adjustment for the parameters are given in B3:B8, C3:C8, and E3:E8. The weighted residuals are given in D3:D8 with formula =(B3-E3)/C3 for cell D3.</p>
+
+<p>The observations for both tracers are moved into column G, and the standard deviations for observations are given in column H. The weighted residuals are calculated in column J with fomula =(G11-I11)/H11 for cell J11.</p>
+
+<p>The formula for the objective function is =SUMSQ(J11:J76)+I1*SUMSQ(D3:D8) in cell L1 with cell I1 as the penalty cell.</p>
+
+<li>Open <b>Solve</b> dialog and <b>Solve Option</b> dialog to solve the problem</li>
+
+<p>Select menu <b>CXTFIT->Solve...</b> to open CXTFIT/Excel <b>Solve</b> dialog.</p>
+
+<p>Select the objective function cell, parameter range, and prediction range as shown in Fig. 8.2.</p>
+
+<p><img src="tuts/tut-fig82.jpg" /></p>
+
+<p>Fig. 8.2 <b>Solve</b> dialog</p>
+
+<p>Click <b>Option</b> button to open the <b>Solve Option</b> dialog, make sure the options are selected as shown in Fig. 8.3.</p>
+
+<p><img src="tuts/tut-fig83.jpg" /></p>
+
+<p>Fig. 8.3 <b>Solve Option</b> dialog</p>
+
+<p>Click <b>OK</b> button to close <b>Solve Option</b> dialog, click <b>Solve</b> button to solve the problem.</p>
+
+<p>The parameter estimates are updated in the parameter range (E3:E8), the standard deviations and correlation matrix are output in H3:N8 (Fig. 8.4).</p>
+
+<p><img src="tuts/tut-fig84.jpg" /></p>
+
+<p>Fig. 8.4 Estimation results using weighted least squares with prior information included as penalty</p>
+
+<p>Note that the values for observation and prior parameter estimates are hypothetical. Nevertheless, the option to include this information can be useful when measurement errors are reliably quantified.</p>
+
+</ol>
+
+<p><a href="section7.html">Previous</a> <a href="section9.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

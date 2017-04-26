@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 1: Introduction</h4>
+
+This is a step-by-step guide for the CXTFIT/Excel. The column experimental data in example Fig. 7.9 in Toride et al. (1995) are used for demonstration. Instruction is given to:
+
+<ol>
+
+<li>Fit <sup>3</sup>H<sub>2</sub>O breakthrough curve</li>
+
+<li>Fit <sup>3</sup>H<sub>2</sub>O and B breakthrough curves simultaneously</li>
+
+<li>Conduct sensitivity analysis to assess the impact of velocity, pulse, and dispersivity for the convection dispersion model equation (<b>CDE</b>) model prediction for <sup>3</sup>H<sub>2</sub>O</li>
+
+<li>Propagate parameter uncertainty to prediction uncertainty for <sup>3</sup>H<sub>2</sub>O breakthrough</li>
+
+<li>Run Monte Carlo analysis for the non-equilibrium convection dispersion equation (<b>MIM</b>) model for <sup>3</sup>H<sub>2</sub>O to investigate the global sensitivity of dispersivity, mobile water fraction, and mass transfer coefficient</li>
+
+<li>Calculate response surface for <sup>3</sup>H<sub>2</sub>O breakthrough curve simulation with MIM</li>
+
+<li>Use weighted non-linear least squares method to incorporate prior information for parameter estimates and analytical error for observations</li>
+
+<li>Use numerical integration options for non-equilibrium model with example Fig. 5.1</li>
+
+<li>Import code and configure Excel file from scratch</li>
+
+<li>Use CXTFIT/Excel in Excel 2007</li>
+
+</ol>
+
+<p>It is recommended that the user start with a blank CXTFIT/Excel file. In which the <b>CXTFIT</b> menu is added, code is incorporated, and <b>Solver</b> is configured. Besides basic Excel operations to input data and formula, the key in using CXTFIT/Excel is to use the two functions (<b>CDE</b> and <b>MIM</b>) to solve the transport equations, and run the Macros through menu <b>CXTFIT</b>. Use of Excel names can simplify the operation but is not required. In the end, we describe the distribution file list, and how to import the code and configure the Excel file from scratch. Most of the tutorial is based on Excel 2003. Issues are addressed in the end for the use of CXTFIT/Excel in Excel 2007.</p>
+
+<p><a href="section2.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

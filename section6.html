@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 6: Monte Carlo Analysis</h4>
+
+Suppose that we want to evaluate the global uncertainty/sensitivity of dispersivity, mobile water fraction, and mass trasfer coefficient for the simulation of the <sup>3</sup>H<sub>2</sub>O breakthrough curve. We start from <a href="section2.html">Section 2</a> and use the mobile-immobile water model at first, then we will create random input and conduct Monte Carlo simulation.
+
+<ol>
+
+<li>Make a copy of Sheet1, work on sheet Sheet1 (5)</li>
+
+<li>Update the forward prediction with the mobile-immobile model</li>
+
+<p>Add values for the mobile water fraction and mass transfer coefficient in cells B7 and B8 (Fig. 6.1).</p>
+
+<p><img src="tuts/tut-fig61.jpg" /></p>
+
+<p>Fig. 6.1 Update the forward prediction for Monte Carlo analysis</p>
+
+<p>Change the formula in C11 to =MIM(1, A11, B$4, B$2/B$6, B$7, B$8), double click on the right bottom corner of cell C11 to extend the formula.</p>
+
+<p>Remove the contents in C6:H6 and F2:F3</p>
+
+<p>Change the formula to =SQRT(SUMSQ(D11:D46)/(COUNT(B11:B46)-COUNT(B6:B8))) in F1.</p>
+
+<p>We use RMSE instead of SSR as the merit function because RMSE is an approximation of the fitting error and has the same unit as concentration. In case of reduced concentration for observation in this example, it is a relative error.</p>
+
+<li>Create random input values</li>
+
+<p>Type in =RAND() in cell G2, extend the formula to G1001. This creates 1000 random numbers uniformly distributed between 0 and 1 (Fig. 6.2).</p>
+
+<p><img src="tuts/tut-fig62.jpg" /></p>
+
+<p>Fig. 6.2 Input random values for Monte Carlo analysis</p>
+
+<p>Select cells G2:G1001, press Ctrl+C</p>
+
+<p>Select cell H2, select menu <b>Edit->Paste as special...</b>, check <b>Value</b>, click <b>OK</b>. This will paste it as values in cells H2:H1001. Repeat the operation to copy it as values in I2:I1001, and J2:J1001.</p>
+
+<p>Type in formula =EXP(-4+6*H2) in cell K2, double click on the right bottom corner of cell K2 to extend the formula. Lambda is sampled in randomly distributed values between -4 and 2 (lambda ranges from 0.02 to 7.4).</p>
+
+<p>Similarly, type in formula =I2 in cell L2, extend the formula. Mobile water fraction is sampled between 0 and 1; type in formula =J2*10 in cell M2, and extend the formula. The mass transfer coefficient is sampled between 0 and 10. The contents in G2:G1001 can be removed then.</p>
+
+<li>Open Monte Carlo Analysis dialog to perform Monte Carlo simulation</li>
+
+<p>Select menu <b>CXTFIT->Monte Carlo analysis...</b> to open <b>Monte Carlo Analysis</b> dialog (Fig. 6.3).</p>
+
+<p><img src="tuts/tut-fig63.jpg" /></p>
+
+<p>Fig. 6.3 <b>Monte Carlo Analysis</b> dialog</p>
+
+<p>Select the merit function cell, parameter range, random parameter input range, and progress cell as shown in Fig. 6.3. Click <b>Calculate</b>.</p>
+
+<p>Cell F2 shows the current set of parameters that is calculating during the process. The corresponding RMSE is recorded right next to the random parameter input range (column N). The RMSE is plotted against the parameters in Fig. 6.4. The small amount of sampling results show the parameter uncertainty is quite significant as long as the measurement error is equal to or greater than 0.03.</p>
+
+<p><img src="tuts/tut-fig64.jpg" /></p>
+
+<p>Fig. 6.4 Monte Carlo analysis results</p>
+
+</ol>
+
+<p><a href="section5.html">Previous</a> <a href="section7.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

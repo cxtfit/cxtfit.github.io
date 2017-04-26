@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 2: Simple Paramter Estimation</h4>
+
+We start from the blank CXTFIT/Excel file CXTFIT.xls
+
+<ol>
+
+<li>Open CXTFIT.xls and save it as Ex1.xls. If Macro security is not set to low, enable Macros</li>
+
+<li>Input experiment conditions, parameters, and observations with locations and times</li>
+
+<p>Fill in B2:B4 for fixed parameters, B6 for calibrating parameters with C6:D6 for lower and upper bound for constraint, and A11:B46 for observation times and concentrations (Fig 2.1).</p>
+
+<p>Note that organization of the inputs is flexible as long as the calibrating parameters are in a range continuous in a column, and the lower and upper bound (constraint) are next to the parameter range.</p>
+
+<p><img src="tuts/tut-fig21.jpg" /></p>
+
+<p>Fig. 2.1 Input parameters and observations in Excel sheet</p>
+
+<li>Input formula for model prediction corresponding to observation</li>
+
+<p>Use either CDE or MIM function to calculate predictions corresponding to the observations using the location, time, and other fixed and/or estimated parameters.</p>
+
+<p>Type in the formula <b>=CDE(1.0, A11, B$4, 1.0, B$6/B$2)</b> in C11 (Fig 2.2);</p>
+
+<p>Double click on the right bottom corner of cell C11 to extend the formula to the rest of the rows.</p>
+
+<p><img src="tuts/tut-fig22.jpg" /></p>
+
+<p>Fig. 2.2 Input formula for model prediction</p>
+
+<p>The arguments in this formula are: 1.0 for relative distance from the inlet, A11 for dimensionless time, B$4 for pulse, 1.0 for unit velocity in dimensionless form, and B$6/B$2 for the inverse of Peclet number (See Eq. 1 in the text for more information). Default setting is used for optional arguments for this example.</p>
+
+<p>The observations can be plotted against the predictions (Fig. 2.3). When any of the parameters are changed, the prediction in the graph changes accordingly. In this way, users can have a good idea of the relative influence of parameters, and get a good initial guess by trial and error.</p>
+
+<p><img src="tuts/tut-fig23.jpg" /></p>
+
+<p>Fig. 2.3 Set up the objective function</p>
+
+<li>Set up the objective function</li>
+
+<p>Type in the formula =B11-C11 in D11(Fig. 2.3), and double click on the right bottom corner of cell D11 to extend the formula; type in the formula =SUMSQ(D11:D46) in cell F1 for objective function.</p>
+
+<li>Solve the parameter estimation problem</li>
+
+<p>Select menu <b>CXTFIT->Solve...</b> to open <b>CXTFIT/Excel Solve</b> dialog (Fig. 2.4)</p>
+
+<p><img src="tuts/tut-fig24.jpg" /></p>
+
+<p>Fig. 2.4 <b>CXTFIT/Excel Solve</b> dialog</p>
+
+<p>Select objective function cell, parameter range and prediction range as shown in Fig. 2.4, click the <b>Solve</b> button. When the optimization is finished, the <b>Solver Results</b> dialog (Fig. 2.5) pops up. Click the <b>OK</b> button with <b>Keep Solver Solution</b>. CXTFIT/Excel outputs the parameter estimate in B6, the standard deviation in E6, and the correlation in E7 (Fig. 2.6).</p>
+
+<p><img src="tuts/tut-fig25.jpg" /></p>
+
+<p>Fig. 2.5 Solver results dialog</p>
+
+<p><img src="tuts/tut-fig26.jpg" /></p>
+
+<p>Fig. 2.6 Parameter estimate results</p>
+
+<li>Add more statistics</li>
+
+<p>Type in the formula =1-F1/(VAR(B11:B46)*(COUNT(B11:B46)-1)) to calculate R square in cell F2 (Fig. 2.7)</p>
+
+<p>Type in the formula =TINV(1-0.95, COUNT(B11:B46)-COUNT(B6)) to calculate t value in cell F3</p>
+
+<p>Type in the formula =B6-F3*E6 to calculate the low confidence limit in cell G6</p>
+
+<p>The upper confidence limit is calculated similarly.</p>
+
+<p><img src="tuts/tut-fig27.jpg" /></p>
+
+<p>Fig. 2.7 More statistics</p>
+
+<li>Options and alternative operations for step 5</li>
+
+<p>So far, the simple parameter estimation problem is solved. For interested users, we discuss an alternative operation procedure and other options for Step 5.</p>
+
+<p>An alternative way to open CXTFIT/Excel dialog is to select menu <b>Tools->Macro->Macros...</b> or press <b>Alt+F8</b> to open the <b>Macro</b> dialog (Fig. 2.8). Select <b>SolveDialog</b> and click <b>Run</b> to open it.</p>
+
+<p><img src="tuts/tut-fig28.jpg" /></p>
+
+<p>Fig. 2.8 Excel <b>Macro</b> dialog and CXTFIT/Excel Macros: Macro <b>SolveDialog</b>, <b>JacobianDialog</b>, <b>PropagateDialog</b>, <b>ResponseDialog</b> and <b>MonteCarloDialog</b> opens the interfaces to specify input and output and execute the Macro <b>Solve</b>, <b>GetJacobianMatrix</b>, <b>Propagate</b>, <b>CalculateResponse</b> and <b>MonteCarloAnalyze</b> to perform related functions; Macro <b>AddMenu</b> and <b>DeleteMenu</b> adds/removes CXTFIT menu; Macro <b>Optimize</b> and <b>Analyze</b> can be used for optimization and uncertainty analysis.</p>
+
+<p>Jacobian matrix is calculated when the Macro <b>Solve</b> is invoked. Output of the sensitivity (Jacobian) of predictions to parameters can be set by clicking on the <b>Options</b> button in the <b>Solve</b> dialog (Fig. 2.4 in Step 5) to open the <b>Solve Option</b> dialog (Fig. 2.9). Check the last option and make the offset 2, click the <b>OK</b> button, then click on the button <b>Solve</b>, then the Jacobian matrix will be output in E11:E46, which has an offset of 2 from the prediction range (C11:C46). The scaled sensitivity and composite scaled sensitivity can be calculated. More details for sensitivity analysis are given in <a href="tut4.html">Section 4</a>. More options in the <b>Solve Option</b> dialog are described in <a href="tut8.html">Section 8</a>.</p>
+
+<p><img src="tuts/tut-fig29.jpg" /></p>
+
+<p>Fig. 2.9 <b>Solve Option</b> dialog</p>
+
+<p>In Step 5, Excel local (sheet level) names <b>ObjFuncCell</b> = Sheet1!$F$1, <b>ParameterRange</b> = Sheet1!$B$6, and <b>PredictionRange</b> = Sheet1!$C$11:$C$46 are implicity defined to specify input for Macro <b>Solve</b>. These names will show up when Step 5 is repeated to open <b>Solve</b> dialog (Fig. 2.10). User can re-select these cell/ranges if necessary.</p>
+
+<p><img src="tuts/tut-fig210.jpg" /></p>
+
+<p>Fig. 2.10 Re-open <b>Solve</b> dialog in a sheet where local names are defined.</p>
+
+<p>These names can be defined or changed by selecting menu <b>Insert->Name->Define...</b> to open <b>Define Name</b> dialog (Fig. 2.11). Type in Sheet1!PredictionRange, and select the prediction range, click <b>Add</b> to add the local name <b>PredictionRange</b>. Names <b>ObjFuncCell</b> and <b>ParameterRange</b> can be added similarly. With the names defined, Macro <b>Solve</b> can be executed to solve the problem similar to Step 5 without using the <b>Solve</b> dialog (Fig. 2.4).</p>
+
+<p>Execution of Macro <b>Solve</b> can be accelerated by adding a button in the sheet. Select menu <b>View->Toolbars->Forms</b>, select <b>Button</b>. In the <b>Forms</b> toolbar (Fig. 2.12), click in the sheet to create a button, assign the button to <b>Solve</b> in the <b>Assign Macro</b> dialog (Fig. 2.13), and click <b>OK</b> to close the dialog.</p>
+
+<p><img src="tuts/tut-fig211.jpg" /></p>
+
+<p>Fig. 2.11 Define Excel range names. The sheet name "Sheet1!" is added before <b>PredictionRange</b> to make the name local to the sheet.</p>
+
+<p><img src="tuts/tut-fig212.jpg" /></p>
+
+<p>Fig. 2.12 Add and assign a button to Macro <b>Solve</b> in the sheet</p>
+
+<p>The text on the button can be changed to "Solve". Now, click the <b>Solve</b> button invoke the <b>Solve</b> Macro, which adjusts the parameters in the parameter range to minimize the objective function, analyze and output parameter uncertainty with one operation. This can be a convenient alternative to Step 5 when the names are already defined.</p>
+
+<li>Simplify formula input using Excel names</li>
+
+<p>Input of formula using function <b>CDE</b> and <b>MIM</b> can be complex and prone to error. For this example, we can define cell B4 by name T0 similar to Fig. 2.11, input formula =B6/B2 in cell B5 and define cell B5 by name IP, then the formula in C11 is <b>=CDE(1, All, T0, 1.0, IP)</b>.</p>
+
+<p><img src="tuts/tut-fig213.jpg" /></p>
+
+<p>Fig. 2.13 Assign Macro to a button.</p>
+
+</ol>
+
+<p><a href="section1.html">Previous</a> <a href="section3.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

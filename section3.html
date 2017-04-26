@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 3: Simultaneous Fit of Two Tracers</h4>
+
+We build on <a href="section2.html">Section 2</a>, add B data and fit the two tracers simultaneously.
+
+<ol>
+
+<li>Make a copy of Sheet1 to add B data</li>
+
+<p>Select menu <b>Edit->Move or Copy sheet...</b> to open the <b>Move or Copy</b> dialog (Fig. 3.1). Select Sheet1, check <b>Create a copy</b>, and click <b>OK</b> to copy Sheet1 to Sheet2 (2).</p>
+
+<p><img src="tuts/tut-fig31.jpg" /></p>
+
+<p>Fig. 3.1 <b>Move or Copy</b> dialog</p>
+
+<li>Input parameters, observations, and formula for model prediction and residual (Fig. 3.2)</li>
+
+<p>In the new sheet (Sheet1 (2)), perform the same actions from Step 2 and Step 3 in <a href="section2.html">Section 2</a>.</p>
+
+<p>Fill in C3:C5 with experiment condition, B7:B8 for the additional parameters to be estimated, and E11:F40 for B observation times and concentrations.</p>
+
+<p>Type in the formula <b>=MIM(1.0, E11, C$4, B$2/B$6, B$7, B$8, C$5)</b> in cell G11 and double click the right bottom corner of cell G11 to extend the formula for all of the B prediction. The arguments are 1.0 for relative distance from inlet, E11 for dimensionless time, C$4 for dimensionless pulse volume, B$2/B$6 is the Peclet number (=L/lambda), B$7 is the fraction, B$8 is the mass transfer coefficient, and C$5 is the retardation factor.</p>
+
+<p><img src="tuts/tut-fig32.jpg" /></p>
+
+<p>Fig. 3.2 Add parameters, observations, and formula for predictions and residual for B</p>
+
+<p>Type in =F11-G11 in cell H11 and double click the right bottom corner of the cell to extend the formula for residual calculation.</p>
+
+<li>Arrange the prediction range and update the objective function</li>
+
+<p>To create a continuous range including predictions for both <sup>3</sup>H<sub>2</sub>O and B, type in the formula =C11 in cell J11, and extend the formula to J46; type in the formula =G11 in cell J47 and extend the formula to J76 (Fig. 3.3).</p>
+
+<p>Similarly, put observations for <sup>3</sup>H<sub>2</sub>O and B in I11 to I76. In cell F1, add +SUMSQ(H11:H40) to the existing formula to include residuals for B.</p>
+
+<p><img src="tuts/tut-fig33.jpg" /></p>
+
+<p>Fig. 3.3 Update the objective function and arrange the prediction range</p>
+
+<li>Solve the problem</li>
+
+<p>Select menu <b>CXTFIT->Solve</b> to open the <b>Solve</b> dialog, this dialog should be similar to Fig. 2.10. Because the three local names are defined in Sheet1 and kept in the new sheet when it is copied from Sheet1, you will have to select the new parameter range and prediction range (Fig. 3.4), click <b>Solve</b> to solve the problem. The results are shown in Fig. 3.5 with the update of parameter estimate in B6:B8, standard deviation and correlation in E6:H8. Note that the standard deviations and correlations are relatively small while the model describes the breakthrough curves reasonably well.</p>
+
+<p><img src="tuts/tut-fig34.jpg" /></p>
+
+<p>Fig. 3.4 <b>Solve</b> dialog</p>
+
+<li>Update statistics</li>
+
+<p>Because the parameter and prediction ranges changed from the case in <a href="tut2.html">Section 2</a>, we need to update the formula for statistics (e.g., R square, confidence intervals).</p>
+
+<p>To update the formula in cell F2 for R square calculation, change the formula to =1-F1/(VAR(I11:I76)*(COUNT(I11:I76)-1)).</p>
+
+<p><img src="tuts/tut-fig35.jpg" /></p>
+
+<p>Fig. 3.5 Parameter estimation results</p>
+
+</ol>
+
+<p><a href="section2.html">Previous</a> <a href="section4.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>

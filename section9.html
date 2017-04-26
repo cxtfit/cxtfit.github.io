@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+<head>
+
+<title>CXTFIT/Excel - A data analysis tool for lab and field tracer experiments.</title>
+
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="css/menu-style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<div w3-include-html="banner.html"></div>
+<div w3-include-html="mainmenu.html"></div>
+
+<script>
+w3IncludeHTML();
+</script>
+
+<div id="content">
+
+<h4>Section 9: Use of Numerical Integration Options</h4>
+
+The example Fig. 5.1 in Toride et al. (1995) is used to illustrate the use of numerical integration options. The parameters are input in D5:D13, and E11:G12. The time instants are put in B19:B119. The dimensionless pulse is calculated in cell G8 by formula =D9*D8/D5. The Peclet number is calculated in cell G9 by formula =D9*D5/D10.
+
+<p>The five numerical integration schemes are listed in R1:R5, and are used to create a list in cell M5 using menu <b>Data->Validation</b>. Similarly, FALSE and TRUE are listed in S1:S2, and are used to create a list in cell M6. The tolerance is input in M7 for the adaptive numerical integration schemes (<b>Romberg</b>, <b>Simpson</b>, and <b>Lobatto</b>), and the number of integration points are in M8 (<b>Chebyshev</b> and <b>Gauss</b> scheme). Then define strNI, LogTransform, tol, and nPoint for the M5, M6, M7, and M8. The formula for D21 is shown in Fig. 10.1, and can be extended to the rest of the cells for forward solution. Users can select different numerical integration schemes, including if time coordinates are log transformed, change the tolerance or number of integration points and compare the efficiency and accuracy of different schemes.</p>
+
+<p><img src="tuts/tut-fig91.jpg" /></p>
+
+<p>Fig. 9.1 Illustration of using different numerical integration scheme</p>
+
+<p><a href="section8.html">Previous</a> <a href="section10.html">Next</a></p>
+<p><a href="tut.html">Back to Tutorial Home Page</a></p>
+
+</div>
+
+</body>
+
+</html>
