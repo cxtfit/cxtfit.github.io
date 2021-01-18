@@ -1,4 +1,5 @@
 // JavaScript source code
+'use strict'
 const Ku = 1.487;
 const g = 32.17;
 class TriangularChannel {
@@ -39,16 +40,24 @@ class TriangularChannel {
     get fr() {
         return this.vn / this.vc;
     }
-
+    get depth() {
+        return Math.max(1.0, Math.max(Math.ceil(this.dn), Math.ceil(this.dc)));
+    }
     calculateDn(Q) {
         this.dn = Math.pow(Q * this.mN / Ku / Math.sqrt(this.cs) * Math.pow(0.5 * (this.z1 + this.z2), -5.0 / 3.0) *
             Math.pow((Math.sqrt(1.0 + this.z1 * this.z1) + Math.sqrt(1.0 + this.z2 * this.z2)), 2.0 / 3.0), 3.0 / 8.0);
     }
 }
 
-const tria = new TriangularChannel(5, 5, 0.02, 0.05, 0.5);
+const tria = new TriangularChannel(3, 3, 0.01, 0.05, 0.5);
 
 window.onload = function () {
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
 
     document.getElementById('leftSideSlope').setAttribute('value', tria.z1);
     document.getElementById('rightSideSlope').setAttribute('value', tria.z2);
@@ -76,6 +85,7 @@ function respondLeftSideSlope(e) {
         tria.z1 = tmp;
         setValues();
         document.getElementById('discharge').value =  tria.Qn.toFixed(2);
+        drawChart();
     }
 }
 
@@ -88,7 +98,8 @@ function respondRightSideSlope(e) {
         tria.z2 = tmp;
         setValues();
         document.getElementById('discharge').value = tria.Qn.toFixed(2);
-    }
+        drawChart();
+   }
 }
 function respondChannelSlope(e) {
     var tmp = parseFloat(document.getElementById('channelSlope').value);
@@ -99,6 +110,7 @@ function respondChannelSlope(e) {
         tria.cs = tmp;
         setValues();
         document.getElementById('discharge').value = tria.Qn.toFixed(2);
+        drawChart();
     }
 }
 function respondManningsN(e) {
@@ -110,6 +122,7 @@ function respondManningsN(e) {
         tria.mN = tmp;
         setValues();
         document.getElementById('discharge').value = tria.Qn.toFixed(2);
+        drawChart();
     }
 }
 function respondNormalDepth(e) {
@@ -121,6 +134,7 @@ function respondNormalDepth(e) {
         tria.dn = tmp;
         setValues();
         document.getElementById('discharge').value = tria.Qn.toFixed(2);
+        drawChart();
     }
 }
 function respondDischarge(e) {
@@ -132,6 +146,7 @@ function respondDischarge(e) {
         tria.calculateDn(tmp);
         setValues();
         document.getElementById('normalDepth').value = tria.dn.toFixed(2);
+        drawChart();
     }
 }
 
@@ -143,4 +158,44 @@ function setValues() {
     document.getElementById('criticalVelocity').innerHTML = tria.vc.toFixed(3);
     document.getElementById('criticalSlope').innerHTML = tria.sc.toFixed(3);
     document.getElementById('froudeNumber').innerHTML = tria.fr.toFixed(3);
+}
+
+function drawChart() {
+
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Station');
+    data.addColumn('number', 'Depth');
+    data.addColumn('number', 'Normal');
+    data.addColumn('number', 'Critical');
+    data.addRows([
+        [0, tria.depth, null, null],
+        [tria.depth * tria.z1, 0, null, null],
+        [tria.depth * (tria.z1 + tria.z2), tria.depth, null, null],
+        [(tria.depth - tria.dn) * tria.z1, null, tria.dn, null],
+        [tria.depth * tria.z1 + tria.dn * tria.z2, null, tria.dn, null],
+        [(tria.depth - tria.dc) * tria.z1, null, null, tria.dc],
+        [tria.depth * tria.z1 + tria.dc * tria.z2, null, null, tria.dc]
+    ]);
+
+    // Set chart options
+    var options = {
+        'hAxis': {
+            'title': 'Station(ft)'
+        },
+        'vAxis': {
+            'title': 'Depth(ft)'
+        },
+        'series': {
+            0: { lineWidth: 3 },
+            2: { linDashStyle: [1, 1] }
+        },
+        colors: ['black', 'blue', 'red'],
+        'width': 450,
+        'height': 300
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
 }
